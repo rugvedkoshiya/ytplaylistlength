@@ -33,9 +33,7 @@ def resultPage(request):
                 ds = '0 seconds'
             return ds.strip().strip(',')
 
-        # replace with your api
         api_key = 'AIzaSyCgQy3L9bVQMF4IF96Y1nVEDe5zDFVZofI' 
-        # replace with your playlist_id
         playlist_url = request.POST.get('playlistLink', 'default')
         try:
             query = parse_qs(urlparse(playlist_url).query, keep_blank_values=True)
@@ -43,7 +41,6 @@ def resultPage(request):
         except:
             params = {'alert': 'block'}
             return render(request, 'index.html', params)
-        # playlist_id = 'PLwgFb6VsUj_mtXvKDupqdWB2JBiek8YPB'
 
         PlaylistURL1 = 'https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=50&fields=items/contentDetails/videoId,nextPageToken&key={}&playlistId={}&pageToken='.format(api_key, playlist_id)
         PlaylistURL2 = 'https://www.googleapis.com/youtube/v3/videos?&part=contentDetails&key={}&id={}&fields=items/contentDetails/duration'.format(api_key, '{}')
